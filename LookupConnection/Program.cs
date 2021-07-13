@@ -42,18 +42,21 @@ namespace LookupConnection
         {
             try
             {
-                var request = (HttpWebRequest)WebRequest.Create(theURI);
-                request.KeepAlive = false;
-                request.Timeout = timeOutMs;
-                var response = (HttpWebResponse)request.GetResponse();
-                if (response.StatusCode == HttpStatusCode.OK)
-                {
-                    return true; // successfully connected
-                }
-                else
-                {
-                    return false; // network wise connected but host error
-                }
+                //var request = (HttpWebRequest)WebRequest.Create(theURI);
+                //request.KeepAlive = false;
+                //request.Timeout = timeOutMs;
+                //var response = (HttpWebResponse)request.GetResponse();
+                //if (response.StatusCode == HttpStatusCode.OK)
+                //{
+                //    return true; // successfully connected
+                //}
+                //else
+                //{
+                //    return false; // network wise connected but host error
+                //}
+                WebClient client = new WebClient();
+                client.DownloadData(theURI);
+                return true;
             }
             catch
             {
